@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Tips</title>
+    
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        
+        .img-side {
+            width: 100%;
+            max-width: 400px; 
+            height: auto;
+            display: block; 
+            margin: 30px auto; 
+        }
+
+        
+        .content-section {
+            display: none;
+        }
+
+        
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            color: blue;
+            margin-top: 30px; 
+        }
+
+        
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 50px; 
+        }
+
+        
+        .list-group-item {
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container mt-4">
+        <div class="row center-content">
+            
+            
+            <div class="col-md-4">
+                <img src="images/Interview.png" class="img-side" alt="Interview Tips">
+            </div>
+
+    
+            <div class="col-md-8">
+                <h2>Interview Tips</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <button class="btn btn-link" onclick="toggleContent('content-1')">Tip 1: Prepare for Common Questions</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn btn-link" onclick="toggleContent('content-2')">Tip 2: Research the Company</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn btn-link" onclick="toggleContent('content-3')">Tip 3: Dress Appropriately</button>
+                    </li>
+                </ul>
+
+                
+                <div id="content-1" class="content-section">
+                    <p>Be prepared to answer common interview questions like "Tell me about yourself" or "Why should we hire you?" Practice your answers ahead of time.</p>
+                </div>
+                <div id="content-2" class="content-section">
+                    <p>Research the company's mission, values, and culture. Know their products and services so you can ask informed questions during the interview.</p>
+                </div>
+                <div id="content-3" class="content-section">
+                    <p>First impressions matter. Dress appropriately for the role and company culture. Even if the company has a casual dress code, it's better to be slightly overdressed than underdressed.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        
+        function toggleContent(contentId) {
+            const content = document.getElementById(contentId);
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

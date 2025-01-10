@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Profile Tips</title>
+    
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        
+        .img-side {
+            width: 100%;
+            max-width: 400px; 
+            height: auto;
+            display: block; 
+            margin: 30px auto; 
+        }
+
+        
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            color: black;
+            margin-top: 30px; 
+        }
+
+        
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 50px; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container mt-4">
+        <div class="row center-content">
+            
+            
+            <div class="col-md-4">
+                <img src="images/linked.png" class="img-side" alt="LinkedIn Profile Tips">
+            </div>
+
+            
+            <div class="col-md-8">
+                <h2>LinkedIn Profile Tips</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <button class="btn btn-link" onclick="toggleContent('content-1')">Tip 1: Use a Professional Profile Picture</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn btn-link" onclick="toggleContent('content-2')">Tip 2: Optimize Your Headline</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn btn-link" onclick="toggleContent('content-3')">Tip 3: Highlight Key Skills</button>
+                    </li>
+                </ul>
+
+                
+                <div id="content-1" class="content-section">
+                    <p>Use a high-quality, professional profile picture that clearly shows your face. A strong profile photo increases the likelihood of being viewed and contacted by potential employers or connections.</p>
+                </div>
+                <div id="content-2" class="content-section">
+                    <p>Your headline should reflect your current role and expertise. It’s important to be clear about what you do so potential employers or recruiters can quickly identify your value.</p>
+                </div>
+                <div id="content-3" class="content-section">
+                    <p>List relevant skills and expertise that make you stand out in your field. Skills help you show up in relevant searches and attract the right connections or job opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        
+        function toggleContent(contentId) {
+            const content = document.getElementById(contentId);
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

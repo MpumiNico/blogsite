@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <meta name="description" content="Job Search and Career Advice Blog. Tips, strategies, and resources to land your dream job.">
+  <meta name="author" content="Mpumi">
+  <meta name="keywords" content="career advice, job search, job tips, resume advice, interview tips">
+  <title>Job Search & Career Advice Blog</title>
+  
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/favicon.ico">
+  <style>
+    .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card-img-top {
+      object-fit: cover;
+      height: 200px;
+    }
+
+    .card-body {
+      flex-grow: 1;
+    }
+
+    /* Style for the modal form */
+    .modal-content {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    /* Styles for uploaded image preview */
+    .uploaded-image {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    /* Gallery for images and content */
+    .gallery {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .gallery-item {
+      width: 200px;
+      text-align: center;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .gallery-item img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .gallery-item p {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Career Advice Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+        <li class="nav-item">
+          <!-- Upload button in the navbar -->
+          <button class="btn btn-light" data-toggle="modal" data-target="#uploadModal">Upload Content</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Content wrapper -->
+  <div class="container mt-5">
+    <h1 class="text-center">Welcome to the Career Advice Blog!</h1>
+    <p class="text-center">Tips and strategies to help you land your dream job and grow your career.</p>
+
+    <!-- Gallery to display uploaded content -->
+    <div class="gallery mt-4" id="gallery"></div>
+    
+    <div class="row d-flex align-items-stretch">
+      <!-- Content cards -->
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <a href="interview-tips.html">
+            <img src="images/Interview.png" class="card-img-top" alt="Job Interview Tips">
+          </a>
+          <div class="card-body">
+            <h2 class="card-title">How to Ace Your Job Interview</h2>
+            <p class="card-text">Discover the top strategies for succeeding in a job interview, making a great first impression, and getting hired.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <a href="resume-tips.html">
+            <img src="images/CV.png" class="card-img-top" alt="Resume Tips">
+          </a>
+          <div class="card-body">
+            <h2 class="card-title">Creating a Resume That Gets You Hired</h2>
+            <p class="card-text">Learn how to craft a compelling resume that will catch the attention of hiring managers and land you interviews.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex align-items-stretch">
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <a href="linkedin-tips.html">
+            <img src="images/linked.png" class="card-img-top" alt="LinkedIn Profile Tips">
+          </a>
+          <div class="card-body">
+            <h2 class="card-title">Building an Impressive LinkedIn Profile</h2>
+            <p class="card-text">Maximize your LinkedIn profile to stand out to recruiters and hiring managers, and boost your chances of landing your dream job.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <a href="networking-tips.html">
+            <img src="images/Networking.png" class="card-img-top" alt="Networking Tips">
+          </a>
+          <div class="card-body">
+            <h2 class="card-title">How to Network Like a Pro</h2>
+            <p class="card-text">Networking is key to career growth. Learn effective networking strategies that will help you open doors and advance your career.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload Modal -->
+  <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadModalLabel">Upload Content</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Form for uploading content -->
+          <div class="form-group">
+            <label for="imageUpload">Upload Image</label>
+            <input type="file" class="form-control-file" id="imageUpload" onchange="previewImage(event)">
+          </div>
+          <div class="form-group">
+            <label for="contentUpload">Content</label>
+            <textarea class="form-control" id="contentUpload" rows="4" placeholder="Write your content here..."></textarea>
+          </div>
+          <div id="imageContainer"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="addContent()">Add Content</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2024 Mpumi Nicollete Mahlalela | All rights reserved</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // Preview uploaded image in modal
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        const imgElement = document.createElement('img');
+        imgElement.src = reader.result;
+        imgElement.classList.add('uploaded-image');
+        const imageContainer = document.getElementById('imageContainer');
+        imageContainer.innerHTML = ''; // Clear existing preview
+        imageContainer.appendChild(imgElement);
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // Add uploaded content to the gallery
+    function addContent() {
+      const content = document.getElementById('contentUpload').value;
+      const imageContainer = document.getElementById('imageContainer');
+      const gallery = document.getElementById('gallery');
+
+      if (content || imageContainer.innerHTML) {
+        const contentDiv = document.createElement('div');
+        contentDiv.classList.add('gallery-item');
+        const contentText = `<p>${content}</p>`;
+        const contentImage = imageContainer.innerHTML;
+        contentDiv.innerHTML = contentText + contentImage;
+        gallery.appendChild(contentDiv);
+
+        // Clear modal fields for new entry
+        document.getElementById('contentUpload').value = '';
+        document.getElementById('imageUpload').value = '';
+        imageContainer.innerHTML = '';
+        $('#uploadModal').modal('hide');
+      }
+    }
+  </script>
+
+</body>
+</html>
