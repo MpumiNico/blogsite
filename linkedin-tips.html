@@ -35,53 +35,85 @@
             margin-top: 50px; 
         }
 
+        /* Animation styles */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .fade-in.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-up {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .slide-up.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Button animation */
+        .animated-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .animated-btn:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: black;
+            transform: translateX(-100%);
+            transition: transform 0.4s;
+        }
+        .animated-btn:hover:after {
+            transform: translateX(0);
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="container mt-4">
+    <div class="container mt-4 fade-in" data-animate>
         <div class="row center-content">
-            
-            
             <div class="col-md-4">
-                <img src="images/linked.png" class="img-side" alt="LinkedIn Profile Tips">
+                <img src="images/linked.png" class="img-side slide-up" data-animate alt="LinkedIn Profile Tips">
             </div>
-
-            
             <div class="col-md-8">
-                <h2>LinkedIn Profile Tips</h2>
+                <h2 class="slide-up" data-animate>LinkedIn Profile Tips</h2>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <button class="btn btn-link" onclick="toggleContent('content-1')">Tip 1: Use a Professional Profile Picture</button>
+                        <button class="btn btn-link animated-btn" onclick="toggleContent('content-1')">Tip 1: Use a Professional Profile Picture</button>
                     </li>
                     <li class="list-group-item">
-                        <button class="btn btn-link" onclick="toggleContent('content-2')">Tip 2: Optimize Your Headline</button>
+                        <button class="btn btn-link animated-btn" onclick="toggleContent('content-2')">Tip 2: Optimize Your Headline</button>
                     </li>
                     <li class="list-group-item">
-                        <button class="btn btn-link" onclick="toggleContent('content-3')">Tip 3: Highlight Key Skills</button>
+                        <button class="btn btn-link animated-btn" onclick="toggleContent('content-3')">Tip 3: Highlight Key Skills</button>
                     </li>
                 </ul>
-
-                
-                <div id="content-1" class="content-section">
+                <div id="content-1" class="content-section slide-up" data-animate>
                     <p>Use a high-quality, professional profile picture that clearly shows your face. A strong profile photo increases the likelihood of being viewed and contacted by potential employers or connections.</p>
                 </div>
-                <div id="content-2" class="content-section">
+                <div id="content-2" class="content-section slide-up" data-animate>
                     <p>Your headline should reflect your current role and expertise. It’s important to be clear about what you do so potential employers or recruiters can quickly identify your value.</p>
                 </div>
-                <div id="content-3" class="content-section">
+                <div id="content-3" class="content-section slide-up" data-animate>
                     <p>List relevant skills and expertise that make you stand out in your field. Skills help you show up in relevant searches and attract the right connections or job opportunities.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
     <script>
-        
         function toggleContent(contentId) {
             const content = document.getElementById(contentId);
             if (content.style.display === 'none' || content.style.display === '') {
@@ -90,6 +122,19 @@
                 content.style.display = 'none';
             }
         }
+        // Animation on scroll and load
+        function animateOnScroll() {
+          const elements = document.querySelectorAll('[data-animate]');
+          const windowHeight = window.innerHeight;
+          elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < windowHeight - 50) {
+              el.classList.add('animated');
+            }
+          });
+        }
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>

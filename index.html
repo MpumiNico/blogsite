@@ -66,11 +66,50 @@
       font-size: 14px;
       margin-top: 10px;
     }
+
+    /* Animation classes */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
+    }
+
+    .slide-up {
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUp 0.8s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Override Bootstrap modal styles for animation */
+    .modal.fade .modal-dialog {
+      transform: translate(0, -25%);
+      opacity: 0;
+      animation: modalFadeIn 0.5s forwards;
+    }
+
+    @keyframes modalFadeIn {
+      to {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fade-in" data-animate>
     <a class="navbar-brand" href="#">Career Advice Blog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -95,9 +134,9 @@
   </nav>
 
   <!-- Content wrapper -->
-  <div class="container mt-5">
-    <h1 class="text-center">Welcome to the Career Advice Blog!</h1>
-    <p class="text-center">Tips and strategies to help you land your dream job and grow your career.</p>
+  <div class="container mt-5 fade-in" data-animate>
+    <h1 class="text-center slide-up" data-animate>Welcome to the Career Advice Blog!</h1>
+    <p class="text-center slide-up" data-animate>Tips and strategies to help you land your dream job and grow your career.</p>
 
     <!-- Gallery to display uploaded content -->
     <div class="gallery mt-4" id="gallery"></div>
@@ -105,9 +144,9 @@
     <div class="row d-flex align-items-stretch">
       <!-- Content cards -->
       <div class="col-lg-6 mb-4">
-        <div class="card">
+        <div class="card animated-card slide-up" data-animate>
           <a href="interview-tips.html">
-            <img src="images/Interview.png" class="card-img-top" alt="Job Interview Tips">
+            <img src="images/Interview.png" class="card-img-top fade-in" data-animate alt="Job Interview Tips">
           </a>
           <div class="card-body">
             <h2 class="card-title">How to Ace Your Job Interview</h2>
@@ -117,9 +156,9 @@
       </div>
 
       <div class="col-lg-6 mb-4">
-        <div class="card">
+        <div class="card animated-card slide-up" data-animate>
           <a href="resume-tips.html">
-            <img src="images/CV.png" class="card-img-top" alt="Resume Tips">
+            <img src="images/CV.png" class="card-img-top fade-in" data-animate alt="Resume Tips">
           </a>
           <div class="card-body">
             <h2 class="card-title">Creating a Resume That Gets You Hired</h2>
@@ -131,9 +170,9 @@
 
     <div class="row d-flex align-items-stretch">
       <div class="col-lg-6 mb-4">
-        <div class="card">
+        <div class="card animated-card slide-up" data-animate>
           <a href="linkedin-tips.html">
-            <img src="images/linked.png" class="card-img-top" alt="LinkedIn Profile Tips">
+            <img src="images/linked.png" class="card-img-top fade-in" data-animate alt="LinkedIn Profile Tips">
           </a>
           <div class="card-body">
             <h2 class="card-title">Building an Impressive LinkedIn Profile</h2>
@@ -143,9 +182,9 @@
       </div>
 
       <div class="col-lg-6 mb-4">
-        <div class="card">
+        <div class="card animated-card slide-up" data-animate>
           <a href="networking-tips.html">
-            <img src="images/Networking.png" class="card-img-top" alt="Networking Tips">
+            <img src="images/Networking.png" class="card-img-top fade-in" data-animate alt="Networking Tips">
           </a>
           <div class="card-body">
             <h2 class="card-title">How to Network Like a Pro</h2>
@@ -187,7 +226,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
+  <footer class="bg-dark text-white text-center py-3 fade-in" data-animate>
     <p>&copy; 2024 Mpumi Nicollete Mahlalela | All rights reserved</p>
   </footer>
 
@@ -231,6 +270,20 @@
         $('#uploadModal').modal('hide');
       }
     }
+
+    // Animation on scroll and load
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('[data-animate]');
+      const windowHeight = window.innerHeight;
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < windowHeight - 50) {
+          el.classList.add('animated');
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
   </script>
 
 </body>

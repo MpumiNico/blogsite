@@ -43,3 +43,46 @@ body {
     border-color: #0056b3;
   }
   
+  /* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-card {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s;
+}
+.animated-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+.animated-btn {
+  transition: background 0.3s, transform 0.2s;
+}
+.animated-btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Utility for delayed animation */
+[data-animate] {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+[data-animate].animated {
+  opacity: 1;
+}

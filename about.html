@@ -32,11 +32,36 @@
     footer {
       margin-top: auto; 
     }
+
+    /* Animation styles */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    .slide-up {
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUp 0.8s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fade-in" data-animate>
     <a class="navbar-brand" href="index.html">Career Advice Blog</a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
@@ -54,8 +79,8 @@
   </nav>
 
   
-  <div class="content">
-    <div class="container mt-5">
+  <div class="content fade-in" data-animate>
+    <div class="container mt-5 slide-up" data-animate>
       <h1 class="text-center">About Career Advice Blog</h1>
       <p class="lead text-center">Our mission is to provide job seekers with actionable tips and advice to help them succeed in their job search and career growth.</p>
 
@@ -63,16 +88,31 @@
     </div>
 
     
-    <img src="images/blog.jfif" alt="Career Advice Blog">
+    <img src="images/blog.jfif" class="slide-up" data-animate alt="Career Advice Blog">
   </div>
 
   
-  <footer class="bg-dark text-white text-center py-3">
+  <footer class="bg-dark text-white text-center py-3 fade-in" data-animate>
     <p>&copy; 2024 Mpumi Nicollete Mahlalela | All rights reserved</p>
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Animation on scroll and load
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('[data-animate]');
+      const windowHeight = window.innerHeight;
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < windowHeight - 50) {
+          el.classList.add('animated');
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
+  </script>
 </body>
 </html>
