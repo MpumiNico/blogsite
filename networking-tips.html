@@ -74,25 +74,32 @@
             transform: scaleX(1);
         }
 
+        .animated-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .animated-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
     </style>
 </head>
 <body>
-
-    <div class="container mt-4 fade-in" data-animate>
-        <div class="row center-content">
-            <div class="col-md-4">
-                <img src="images/Networking.png" class="img-side slide-up" data-animate alt="Networking Tips">
-            </div>
-            <div class="col-md-8">
-                <h2 class="slide-up" data-animate>Networking Tips</h2>
-                <ul class="list-group">
-                    <li class="list-group-item">
+    <div class="container mt-5 d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg rounded animated-card fade-in" data-animate style="max-width: 700px; width: 100%;">
+            <img src="images/Networking.png" class="card-img-top slide-up" data-animate alt="Networking Tips">
+            <div class="card-body">
+                <h2 class="card-title text-center slide-up" data-animate>Networking Tips</h2>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item bg-transparent border-0">
                         <button class="btn btn-link animated-btn" onclick="toggleContent('content-1')">Tip 1: Build Meaningful Connections</button>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-transparent border-0">
                         <button class="btn btn-link animated-btn" onclick="toggleContent('content-2')">Tip 2: Attend Networking Events</button>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-transparent border-0">
                         <button class="btn btn-link animated-btn" onclick="toggleContent('content-3')">Tip 3: Follow Up After Connections</button>
                     </li>
                 </ul>
@@ -108,10 +115,8 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
     <script>
         function toggleContent(contentId) {
             const content = document.getElementById(contentId);
