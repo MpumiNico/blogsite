@@ -133,14 +133,17 @@
     </div>
   </nav>
 
-  <!-- Content wrapper -->
-  <div class="container mt-5 fade-in" data-animate>
-    <h1 class="text-center slide-up" data-animate>Welcome to the Career Advice Blog!</h1>
-    <p class="text-center slide-up" data-animate>Tips and strategies to help you land your dream job and grow your career.</p>
+  <!-- Hero Section -->
+  <section class="hero-section d-flex align-items-center justify-content-center text-center" data-animate>
+    <div class="container">
+      <h1 class="display-4 font-weight-bold mb-3 slide-up" data-animate>Welcome to the Career Advice Blog!</h1>
+      <p class="lead mb-4 fade-in" data-animate>Tips and strategies to help you land your dream job and grow your career.</p>
+      <a href="#main-content" class="btn btn-lg btn-primary animated-btn fade-in" data-animate>Explore Tips</a>
+    </div>
+  </section>
 
-    <!-- Gallery to display uploaded content -->
-    <div class="gallery mt-4" id="gallery"></div>
-    
+  <!-- Main Content -->
+  <div id="main-content" class="container mt-5 fade-in" data-animate>
     <div class="row d-flex align-items-stretch">
       <!-- Content cards -->
       <div class="col-lg-6 mb-4">
@@ -193,6 +196,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Gallery to display uploaded content -->
+    <div class="gallery mt-4" id="gallery"></div>
   </div>
 
   <!-- Upload Modal -->
@@ -229,6 +235,9 @@
   <footer class="bg-dark text-white text-center py-3 fade-in" data-animate>
     <p>&copy; 2024 Mpumi Nicollete Mahlalela | All rights reserved</p>
   </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" class="btn btn-primary animated-btn" title="Go to top">&uarr;</button>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
@@ -271,14 +280,30 @@
       }
     }
 
-    // Animation on scroll and load
+    // Scroll to Top Button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.onscroll = function() {
+      animateOnScroll();
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollTopBtn.style.display = 'block';
+      } else {
+        scrollTopBtn.style.display = 'none';
+      }
+    };
+    scrollTopBtn.onclick = function() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+
+    // Staggered animation
     function animateOnScroll() {
       const elements = document.querySelectorAll('[data-animate]');
       const windowHeight = window.innerHeight;
+      let delay = 0;
       elements.forEach(el => {
         const rect = el.getBoundingClientRect();
         if (rect.top < windowHeight - 50) {
-          el.classList.add('animated');
+          setTimeout(() => el.classList.add('animated'), delay);
+          delay += 120;
         }
       });
     }
